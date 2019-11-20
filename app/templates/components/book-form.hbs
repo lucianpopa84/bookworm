@@ -1,0 +1,70 @@
+<h2>{{headerLabel}}</h2>
+{{!-- <h2> {{if book.id 'Update Book' 'Add new book'}} </h2> --}}
+<form {{action 'submit' on='submit'}} class="needs-validation" novalidate>
+    <div class="form-group">
+        <label for="title">Title</label>
+        {{#if errors.title}}
+            {{input class="form-control invalid" id='title' focus-out="validateTitle" value=book.title placeholder="Write book title..." required=true}}
+            <div class="invalid-feedback">
+                {{#each errors.title as |error|}}
+                <span>{{error.message}}</span>
+                {{/each}}
+            </div>
+        {{else}}
+            {{input class="form-control valid" id='title' focus-out="validateTitle" value=book.title placeholder="Write book title..." required=true}}
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="form-group">
+        <label for="author">Author</label>
+        {{#if errors.author}}
+            {{input class='form-control invalid' id='author' focus-out="validateAuthor" value=book.author placeholder="Write book author..." required=true}}
+            <div class="invalid-feedback">
+                {{#each errors.author as |error|}}
+                    <span>{{error.message}}</span>
+                {{/each}}
+            </div>
+        {{else}}
+            {{input class='form-control valid' id='author' focus-out="validateAuthor" value=book.author placeholder="Write book author..." required=true}}
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        {{input class='form-control' id='description' value=book.description placeholder="Write book description..."}}
+    </div>
+
+    {{#if book.id}}
+        <div class="form-group">
+            <label for="bookstore">Bookstore</label>
+            <select id="bookstore" onchange={{action "selectBookstore" value=target.value}} class='form-control'>
+                {{#each bookstores as |bookstore|}}
+                    {{#if (eq bookstore.name book.bookstore.name)}}
+                        <option selected value={{bookstore.id}}>{{bookstore.name}}</option>
+                    {{else}}
+                        <option value={{bookstore.id}}>{{bookstore.name}}</option>
+                    {{/if}}
+                {{/each}}
+            </select>
+        </div>
+    {{else}}
+        <div class="form-group">
+            <label for="bookstore">Bookstore</label>
+            <select id="bookstore" onchange={{action "selectBookstore" value=target.value}} class='form-control'>
+                <option disabled selected> -- Select bookstore -- </option>
+                {{#each bookstores as |bookstore|}}
+                <option value={{bookstore.id}}>{{bookstore.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    {{/if}}
+
+    <button type='submit' class="btn btn-primary">{{bottonLabel}}</button>
+    {{!-- <button type='submit' class="btn btn-primary">{{if book.id 'Update Book' 'Add new book'}}</button> --}}
+</form>

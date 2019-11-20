@@ -1,0 +1,16 @@
+<h2>{{book.title}} <small>by {{book.author}}</small></h2>
+<div>
+    {{book.description}}
+</div>
+<div>
+    Bookstore: {{book.bookstore.name}}
+</div>
+<div>
+    Book id: {{book.id}}
+</div>
+<div>
+    {{#link-to 'books.edit' book class='btn btn-success'}}
+        Edit Book
+    {{/link-to}}
+    <a href="" class="btn btn-danger" {{action 'deleteBook'}}>Delete Book</a>
+</div>

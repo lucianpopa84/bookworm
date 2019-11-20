@@ -1,0 +1,7 @@
+<div class="list-group">
+    {{#each bookstores as |bookstore|}}
+            {{#link-to "bookstores.bookstore" bookstore class="list-group-item"}}
+                {{bookstore.name}}
+            {{/link-to}}
+    {{/each}}
+</div>
