@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   actions: {
     logout: function() {
-      this.get('session').invalidate(); // removes token from session
+      // this.get('session').invalidate(); // removes token from session
     }
   },
 });
